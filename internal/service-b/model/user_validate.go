@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func (u *User) ValidateInput() error {
+func (u *TransferRequest) ValidateInput() error {
 	if u.UserID <= 0 {
 		return fmt.Errorf("UserID не может быть меньше нуля")
 	}
@@ -14,7 +14,7 @@ func (u *User) ValidateInput() error {
 	}
 
 	if u.Amount <= 0 || u.Amount > 1000 {
-		return fmt.Errorf("Введите значение от 0 до 1000")
+		return fmt.Errorf("Amount должен быть от 1 до 1000")
 	}
 
 	return nil
