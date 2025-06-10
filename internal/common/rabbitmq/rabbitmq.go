@@ -52,3 +52,34 @@ func (r *RabbitMQ) Publish(queue string, body []byte) error {
 		},
 	)
 }
+
+func (r *RabbitMQ) ConsumeMessages(queue string) (<-chan amqp091.Delivery, error) {
+	msgs, err := r.Channel.Consume(
+		queue,
+		"",
+		false,
+		false,
+		false,
+		false,
+		nil,
+	)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return msgs, nil
+}
+
+func (r *RabbitMQ) DeclareQueue(name string) error {
+	_, err := r.Channel.QueueDeclare(
+		name,
+		true,
+		false,
+		false,
+		false,
+		nil,
+	)
+
+	return err
+}
