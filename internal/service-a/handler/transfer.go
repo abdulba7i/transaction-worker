@@ -11,7 +11,7 @@ import (
 
 func TransferHandler(rabbit *rabbitmq.RabbitMQ) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		var user model.User
+		var user model.TransferRequest
 
 		if err := json.NewDecoder(ctx.Request.Body).Decode(&user); err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body"})

@@ -23,7 +23,6 @@ func main() {
 	}
 	amqpServerURL := os.Getenv("AMQP_SERVER_URL")
 
-	// running server
 	logger.Log.Info("Server is running on port :8080")
 
 	r := gin.Default()
